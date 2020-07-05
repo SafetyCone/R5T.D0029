@@ -1,0 +1,4 @@
+R5T.D0029.Base - Base definitions library for the  IVisualStudioProjectFileSerializer service, async, stringly-typed paths.
+
+Goals
+

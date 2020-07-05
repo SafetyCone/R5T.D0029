@@ -1,0 +1,4 @@
+R5T.D0029.Default - A default implementations library for the IVisualStudioProjectFileSerializer service, async, stringly-typed paths.
+
+Goals
+

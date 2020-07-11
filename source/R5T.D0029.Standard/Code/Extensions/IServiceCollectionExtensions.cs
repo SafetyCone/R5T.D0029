@@ -47,6 +47,19 @@ namespace R5T.D0029.Standard
             return services;
         }
 
+        public static IServiceAction<IVisualStudioProjectFileSerializer> AddVisualStudioProjectFileSerializerAction(this IServiceCollection services,
+            IServiceAction<INowUtcProvider> nowUtcProviderAction,
+            IServiceAction<IMessageSink> messageSinkAction,
+            IServiceAction<IStringlyTypedPathOperator> stringlyTypedPathOperatorAction)
+        {
+            var serviceAction = ServiceAction.New<IVisualStudioProjectFileSerializer>(() => services.AddVisualStudioProjectFileSerializer(
+                nowUtcProviderAction,
+                messageSinkAction,
+                stringlyTypedPathOperatorAction));
+
+            return serviceAction;
+        }
+
         public static IServiceCollection AddAsFilePathVisualStudioProjectFileSerializer(this IServiceCollection services,
             IServiceAction<INowUtcProvider> nowUtcProviderAction,
             IServiceAction<IMessageSink> messageSinkAction,
@@ -69,11 +82,24 @@ namespace R5T.D0029.Standard
                 messageSinkAction,
                 visualStudioProjectFileXDocumentPrettifierAction);                
 
-            services.AddAsFilePathVisualStudioProjectFileSerializerAction(
+            services.AddAsFilePathVisualStudioProjectFileSerializer(
                 visualStudioProjectFileTransformerAction,
                 asFilePathXDocumentVisualStudioProjectFileSerializer);
 
             return services;
+        }
+
+        public static IServiceAction<IAsFilePathVisualStudioProjectFileSerializer> AddAsFilePathVisualStudioProjectFileSerializerAction(this IServiceCollection services,
+            IServiceAction<INowUtcProvider> nowUtcProviderAction,
+            IServiceAction<IMessageSink> messageSinkAction,
+            IServiceAction<IStringlyTypedPathOperator> stringlyTypedPathOperatorAction)
+        {
+            var serviceAction = ServiceAction.New<IAsFilePathVisualStudioProjectFileSerializer>(() => services.AddAsFilePathVisualStudioProjectFileSerializer(
+                nowUtcProviderAction,
+                messageSinkAction,
+                stringlyTypedPathOperatorAction));
+
+            return serviceAction;
         }
     }
 }

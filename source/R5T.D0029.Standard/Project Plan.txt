@@ -1,0 +1,4 @@
+R5T.D0029.Standard - The standard aggregation library for the IVisualStudioProjectFileSerializer service (async, stringly-typed paths).
+
+Goals
+

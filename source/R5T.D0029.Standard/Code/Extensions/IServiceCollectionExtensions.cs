@@ -46,5 +46,34 @@ namespace R5T.D0029.Standard
 
             return services;
         }
+
+        public static IServiceCollection AddAsFilePathVisualStudioProjectFileSerializer(this IServiceCollection services,
+            IServiceAction<INowUtcProvider> nowUtcProviderAction,
+            IServiceAction<IMessageSink> messageSinkAction,
+            IServiceAction<IStringlyTypedPathOperator> stringlyTypedPathOperatorAction)
+        {
+            // 0.
+            var visualStudioProjectFileTransformerAction = services.AddVisualStudioProjectFileTransformerAction();
+            var visualStudioProjectFileXDocumentPrettifierAction = services.AddVisualStudioProjectFileXDocumentPrettifierAction();
+
+            // 1.
+            var functionalVisualStudioProjectFileSerializationModifierAction = services.AddFunctionalVisualStudioProjectFileSerializationModifierAction(
+                stringlyTypedPathOperatorAction);
+            var relativePathsXDocumentVisualStudioProjectFileStreamSerializerAction = services.AddRelativePathsXDocumentVisualStudioProjectFileStreamSerializerAction(
+                nowUtcProviderAction);
+
+            // 2.
+            var asFilePathXDocumentVisualStudioProjectFileSerializer = services.AddAsFilePathXDocumentVisualStudioProjectFileSerializerAction(
+                relativePathsXDocumentVisualStudioProjectFileStreamSerializerAction,
+                functionalVisualStudioProjectFileSerializationModifierAction,
+                messageSinkAction,
+                visualStudioProjectFileXDocumentPrettifierAction);                
+
+            services.AddAsFilePathVisualStudioProjectFileSerializerAction(
+                visualStudioProjectFileTransformerAction,
+                asFilePathXDocumentVisualStudioProjectFileSerializer);
+
+            return services;
+        }
     }
 }

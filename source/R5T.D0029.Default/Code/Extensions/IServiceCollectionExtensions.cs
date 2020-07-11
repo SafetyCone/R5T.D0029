@@ -47,12 +47,12 @@ namespace R5T.D0029.Default
         /// </summary>
         public static IServiceCollection AddAsFilePathVisualStudioProjectFileSerializer(this IServiceCollection services,
             IServiceAction<IVisualStudioProjectFileTransformer> visualStudioProjectFileTransformerAction,
-            IServiceAction<IXDocumentVisualStudioProjectFileSerializer> xDocumentVisualStudioProjectFileSerializerAction)
+            IServiceAction<IAsFilePathXDocumentVisualStudioProjectFileSerializer> asFilePathXDocumentVisualStudioProjectFileSerializer)
         {
             services
                 .AddSingleton<IAsFilePathVisualStudioProjectFileSerializer, AsFilePathVisualStudioProjectFileSerializer>()
                 .Run(visualStudioProjectFileTransformerAction)
-                .Run(xDocumentVisualStudioProjectFileSerializerAction)
+                .Run(asFilePathXDocumentVisualStudioProjectFileSerializer)
                 ;
 
             return services;
@@ -63,11 +63,11 @@ namespace R5T.D0029.Default
         /// </summary>
         public static IServiceAction<IAsFilePathVisualStudioProjectFileSerializer> AddAsFilePathVisualStudioProjectFileSerializerAction(this IServiceCollection services,
             IServiceAction<IVisualStudioProjectFileTransformer> visualStudioProjectFileTransformerAction,
-            IServiceAction<IXDocumentVisualStudioProjectFileSerializer> xDocumentVisualStudioProjectFileSerializerAction)
+            IServiceAction<IAsFilePathXDocumentVisualStudioProjectFileSerializer> asFilePathXDocumentVisualStudioProjectFileSerializer)
         {
             var serviceAction = ServiceAction.New<IAsFilePathVisualStudioProjectFileSerializer>(() => services.AddAsFilePathVisualStudioProjectFileSerializer(
                 visualStudioProjectFileTransformerAction,
-                xDocumentVisualStudioProjectFileSerializerAction));
+                asFilePathXDocumentVisualStudioProjectFileSerializer));
 
             return serviceAction;
         }

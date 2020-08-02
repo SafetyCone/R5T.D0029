@@ -13,6 +13,7 @@ using R5T.D0021.Default;
 using R5T.D0022;
 using R5T.D0022.Default;
 using R5T.D0029.Default;
+using R5T.D0030.Default;
 
 using R5T.Dacia;
 using R5T.Lombardy;
@@ -40,12 +41,17 @@ namespace R5T.D0029.Standard
             var visualStudioProjectFileXDocumentPrettifierAction = services.AddVisualStudioProjectFileXDocumentPrettifierAction();
 
             // 1.
-            var functionalVisualStudioProjectFileSerializationModifierAction = services.AddFunctionalVisualStudioProjectFileSerializationModifierAction(
+            var visualStudioProjectFileProjectReferencePathProviderAction = services.AddVisualStudioProjectFileProjectReferencePathProviderAction(
                 stringlyTypedPathOperatorAction);
             var relativePathsXDocumentVisualStudioProjectFileStreamSerializerAction = services.AddRelativePathsXDocumentVisualStudioProjectFileStreamSerializerAction(
                 nowUtcProviderAction);
 
             // 2.
+            var functionalVisualStudioProjectFileSerializationModifierAction = services.AddFunctionalVisualStudioProjectFileSerializationModifierAction(
+                stringlyTypedPathOperatorAction,
+                visualStudioProjectFileProjectReferencePathProviderAction);
+            
+            // 3.
             var xDocumentVisualStudioProjectFileSerializerAction = services.AddXDocumentVisualStudioProjectFileSerializerAction(
                 relativePathsXDocumentVisualStudioProjectFileStreamSerializerAction,
                 functionalVisualStudioProjectFileSerializationModifierAction,
@@ -98,12 +104,17 @@ namespace R5T.D0029.Standard
             var visualStudioProjectFileXDocumentPrettifierAction = services.AddVisualStudioProjectFileXDocumentPrettifierAction();
 
             // 1.
-            var functionalVisualStudioProjectFileSerializationModifierAction = services.AddFunctionalVisualStudioProjectFileSerializationModifierAction(
+            var visualStudioProjectFileProjectReferencePathProviderAction = services.AddVisualStudioProjectFileProjectReferencePathProviderAction(
                 stringlyTypedPathOperatorAction);
             var relativePathsXDocumentVisualStudioProjectFileStreamSerializerAction = services.AddRelativePathsXDocumentVisualStudioProjectFileStreamSerializerAction(
                 nowUtcProviderAction);
 
             // 2.
+            var functionalVisualStudioProjectFileSerializationModifierAction = services.AddFunctionalVisualStudioProjectFileSerializationModifierAction(
+                stringlyTypedPathOperatorAction,
+                visualStudioProjectFileProjectReferencePathProviderAction);
+
+            // 3.
             var xAsFilePathDocumentVisualStudioProjectFileSerializerAction = services.AddAsFilePathXDocumentVisualStudioProjectFileSerializerAction(
                 relativePathsXDocumentVisualStudioProjectFileStreamSerializerAction,
                 functionalVisualStudioProjectFileSerializationModifierAction,

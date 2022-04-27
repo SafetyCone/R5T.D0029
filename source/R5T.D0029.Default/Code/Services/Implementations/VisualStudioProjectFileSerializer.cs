@@ -1,15 +1,15 @@
-﻿using System;
+using System;
 using System.Threading.Tasks;
 
 using R5T.D0019;
 using R5T.D0021;
 using R5T.T0002;
-using R5T.T0004;
+using R5T.T0004;using R5T.T0064;
 
 
 namespace R5T.D0029.Default
-{
-    public class VisualStudioProjectFileSerializer : IVisualStudioProjectFileSerializer
+{[ServiceImplementationMarker]
+    public class VisualStudioProjectFileSerializer : IVisualStudioProjectFileSerializer,IServiceImplementation
     {
         private IVisualStudioProjectFileTransformer VisualStudioProjectFileTransformer { get; }
         private IXDocumentVisualStudioProjectFileSerializer XDocumentVisualStudioProjectFileSerializer { get; }

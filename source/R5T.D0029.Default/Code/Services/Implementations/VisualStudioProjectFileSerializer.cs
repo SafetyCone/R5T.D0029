@@ -20,16 +20,17 @@ namespace R5T.D0029.Default
             IVisualStudioProjectFileTransformer visualStudioProjectFileTransformer,
             IXDocumentVisualStudioProjectFileSerializer xDocumentVisualStudioProjectFileSerializer)
         {
+            this.VisualStudioProjectFileTransformer = visualStudioProjectFileTransformer;
             this.XDocumentVisualStudioProjectFileSerializer = xDocumentVisualStudioProjectFileSerializer;
         }
 
-        public async Task<IVisualStudioProjectFile> DeserializeAsync(string projectFilePath)
+        public async Task<IVisualStudioProjectFile> Deserialize(string projectFilePath)
         {
-            var visualStudioProjectFile = await this.XDocumentVisualStudioProjectFileSerializer.DeserializeAsync(projectFilePath);
+            var visualStudioProjectFile = await this.XDocumentVisualStudioProjectFileSerializer.Deserialize(projectFilePath);
             return visualStudioProjectFile;
         }
 
-        public async Task SerializeAsync(string projectFilePath, IVisualStudioProjectFile visualStudioProjectFile, bool overwrite = true)
+        public async Task Serialize(string projectFilePath, IVisualStudioProjectFile visualStudioProjectFile, bool overwrite = true)
         {
             var isXDocumentVisualStudioProjectFile = visualStudioProjectFile is XDocumentVisualStudioProjectFile;
 
@@ -46,7 +47,7 @@ namespace R5T.D0029.Default
                 await this.VisualStudioProjectFileTransformer.CopySourceToDestinationAsync(visualStudioProjectFile, xDocumentVisualStudioProjectFile);
             }
 
-            await this.XDocumentVisualStudioProjectFileSerializer.SerializeAsync(projectFilePath, xDocumentVisualStudioProjectFile, overwrite);
+            await this.XDocumentVisualStudioProjectFileSerializer.Serialize(projectFilePath, xDocumentVisualStudioProjectFile, overwrite);
         }
     }
 }
